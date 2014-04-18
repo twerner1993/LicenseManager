@@ -1,0 +1,64 @@
+﻿@model LicenseManagerMvc.Models.ProgrammViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Programm</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hersteller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hersteller.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beschreibung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beschreibung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lizenzs)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.Lizenzs.Count)
+        </dd>
+
+        
+    </dl>
+</div>
+
+<div>
+    @Html.Partial("../Lizenz/PartialList")
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProgrammId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

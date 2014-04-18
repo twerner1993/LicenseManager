@@ -1,0 +1,42 @@
+﻿@model LicenseManagerMvc.Models.Lizenz
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lizenz</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Programm.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Programm.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Schluessel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Schluessel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LizenzId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
