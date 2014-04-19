@@ -52,11 +52,20 @@ namespace LicenseManagerMvc.Controllers
         //
         // POST: /ProgrammView/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include="ProgrammId,HerstellerName,GenreId,Name,Beschreibung")] ProgrammViewModel programmview)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (!new HerstellerController().Exists(programmview.HerstellerName))
+                {
+                    new HerstellerController().Create(
+                        new Hersteller
+                        {
+                            Name = programmview.HerstellerName
+                        });
+                }
+
+                Hersteller hersteller = 
 
                 return RedirectToAction("Index");
             }

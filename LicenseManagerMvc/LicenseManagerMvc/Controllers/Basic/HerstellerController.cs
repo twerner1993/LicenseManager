@@ -115,6 +115,19 @@ namespace LicenseManagerMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: /Hersteller/Exists/Bla
+        public bool Exists(string name)
+        {
+            foreach (Hersteller item in db.Herstellers)
+            {
+                if(String.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
