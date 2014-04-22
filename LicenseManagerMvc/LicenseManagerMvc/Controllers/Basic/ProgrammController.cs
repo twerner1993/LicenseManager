@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LicenseManagerMvc.Models;
 
-namespace LicenseManagerMvc.Controllers.Basic
+namespace LicenseManagerMvc.Controllers
 {
     public class ProgrammController : Controller
     {

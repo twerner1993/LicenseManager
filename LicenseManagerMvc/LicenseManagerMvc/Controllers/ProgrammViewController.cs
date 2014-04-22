@@ -65,7 +65,23 @@ namespace LicenseManagerMvc.Controllers
                         });
                 }
 
-                Hersteller hersteller = 
+                Hersteller hersteller = db.Herstellers.Where(h => h.Name == programmview.HerstellerName).Single();
+                Genre genre = db.Genres.Find(programmview.GenreId);
+
+                Programm programm = new Programm
+                {
+                    HerstellerId = hersteller.HerstellerId,
+                    Hersteller = hersteller,
+                    Genre = genre,
+                    GenreId = genre.GenreId,
+                    Name = programmview.Name,
+                    Beschreibung = programmview.Beschreibung
+                };
+
+                //return new ProgrammController().Create(programm);
+
+                db.Programms.Add(programm);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

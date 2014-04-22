@@ -120,7 +120,7 @@ namespace LicenseManagerMvc.Controllers
         {
             foreach (Hersteller item in db.Herstellers)
             {
-                if(String.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase){
+                if(String.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase)){
                     return true;
                 }
             }

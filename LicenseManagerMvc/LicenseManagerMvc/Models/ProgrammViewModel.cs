@@ -11,8 +11,9 @@ namespace LicenseManagerMvc.Models
         public string HerstellerName { get; set; }
         public string Name { get; set; }
         public string Beschreibung { get; set; }
-        public Hersteller Hersteller { get; set; }
-        public Genre Genre { get; set; }
-        public ICollection<Lizenz> Lizenzs { get; set; }
+        public int GenreId { get; set; }
+        public virtual Hersteller Hersteller { get; set; }
+        public virtual Genre Genre { get; set; }
+        public virtual ICollection<Lizenz> Lizenzs { get; set; }
     }
 }

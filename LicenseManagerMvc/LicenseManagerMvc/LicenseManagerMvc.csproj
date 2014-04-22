@@ -256,6 +256,7 @@
     <Content Include="Views\ProgrammView\Details.cshtml" />
     <Content Include="Views\Lizenz\PartialList.cshtml" />
     <Content Include="Views\ProgrammView\Create.cshtml" />
+    <Content Include="Views\ProgrammView\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
