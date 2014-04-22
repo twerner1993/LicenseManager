@@ -115,7 +115,7 @@ namespace LicenseManagerMvc.Controllers
                 Beschreibung = programm.Beschreibung
             };
 
-            ViewBag.HerstellerId = new SelectList(db.Herstellers, "HerstellerId", "Name", programmview.Hersteller.HerstellerId);
+            //ViewBag.HerstellerId = new SelectList(db.Herstellers, "HerstellerId", "Name", programmview.Hersteller.HerstellerId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", programmview.Genre.GenreId);
 
             return View(programmview);
@@ -124,25 +124,46 @@ namespace LicenseManagerMvc.Controllers
         //
         // POST: /ProgrammView/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "ProgrammId,HerstellerName,GenreId,Name,Beschreibung")] ProgrammViewModel programmview)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                Hersteller hersteller = db.Herstellers.Where(h => h.Name == programmview.HerstellerName).Single();
+                Programm prog = new Programm
+                {
+                    ProgrammId = programmview.ProgrammId,
+                    GenreId = programmview.GenreId,
+                    Genre = programmview.Genre,
+                    HerstellerId = hersteller.HerstellerId,
+                    Hersteller = hersteller,
+                    Name = programmview.Name,
+                    Beschreibung = programmview.Beschreibung
+                };
+                db.Entry(prog).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            //ViewBag.HerstellerId = new SelectList(db.Herstellers, "HerstellerId", "Name", programmview.Hersteller.HerstellerId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", programmview.Genre.GenreId);
+
+            return View(programmview);
         }
 
         //
         // GET: /ProgrammView/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Programm programm = db.Programms.Find(id);
+            if (programm == null)
+            {
+                return HttpNotFound();
+            }
+            return View(programm);
         }
 
         //
@@ -160,6 +181,15 @@ namespace LicenseManagerMvc.Controllers
             {
                 return View();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         protected ProgrammViewModel programmToProgrammViewModel(Programm programm)
