@@ -95,7 +95,30 @@ namespace LicenseManagerMvc.Controllers
         // GET: /ProgrammView/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Programm programm = db.Programms.Find(id);
+            if (programm == null)
+            {
+                return HttpNotFound();
+            }
+            ProgrammViewModel programmview = new ProgrammViewModel
+            {
+                ProgrammId = programm.ProgrammId,
+                HerstellerName = programm.Hersteller.Name,
+                Hersteller = programm.Hersteller,
+                GenreId = programm.GenreId,
+                Genre = programm.Genre,
+                Name = programm.Name,
+                Beschreibung = programm.Beschreibung
+            };
+
+            ViewBag.HerstellerId = new SelectList(db.Herstellers, "HerstellerId", "Name", programmview.Hersteller.HerstellerId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", programmview.Genre.GenreId);
+
+            return View(programmview);
         }
 
         //

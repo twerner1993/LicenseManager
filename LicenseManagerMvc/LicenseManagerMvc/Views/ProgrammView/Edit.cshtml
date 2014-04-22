@@ -1,4 +1,4 @@
-﻿@model LicenseManagerMvc.Models.Programm
+﻿@model LicenseManagerMvc.Models.ProgrammViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -18,18 +18,18 @@
         @Html.HiddenFor(model => model.ProgrammId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HerstellerId, "HerstellerId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Hersteller.HerstellerId, "HerstellerId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("HerstellerId", String.Empty)
-                @Html.ValidationMessageFor(model => model.HerstellerId)
+                @Html.ValidationMessageFor(model => model.Hersteller.HerstellerId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GenreId, "GenreId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Genre.GenreId, "GenreId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("GenreId", String.Empty)
-                @Html.ValidationMessageFor(model => model.GenreId)
+                @Html.ValidationMessageFor(model => model.Genre.GenreId)
             </div>
         </div>
 
