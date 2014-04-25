@@ -152,7 +152,7 @@ namespace LicenseManagerMvc.Controllers
 
         //
         // GET: /ProgrammView/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -181,6 +181,13 @@ namespace LicenseManagerMvc.Controllers
             {
                 return View();
             }
+        }
+
+        //
+        // GET: /ProgrammView/CreateLizenz/
+        public string CreateLizenz(ProgrammViewModel programmview)
+        {
+            return "Bla";
         }
 
         protected override void Dispose(bool disposing)
